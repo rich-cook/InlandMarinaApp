@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Filter by Dock";
+}
+<div class="form-group">
+    <select id="uxDocks" asp-items="@ViewBag.Docks" class="form-control">
+    </select>
+</div>
+
+<div id="uxDisplay">
+    @await Component.InvokeAsync("SlipsByDock", "All")
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#uxDocks").change(function () {
+                var id = $("#uxDocks").val();
+
+                $.ajax({
+                    method: 'GET',
+                    url: '/Slip/GetSlipsByDock',
+                    data: { id: id }
+                }).done(function (result, statusText, xhdr) {
+                    $("#uxDisplay").html(result);
+                });
+            });
+        });
+    </script>
+}

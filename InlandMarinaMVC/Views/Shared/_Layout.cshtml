@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InlandMarina</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">InlandMarina</a>
+                <img class="img-responsive" src="~/Images/inlandbanner_v3_800x100(3).jpg" style="width:70px; height: 40px;" />
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Slip" asp-action="Index">Slips</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Slip" asp-action="FilterByDock">Slips by Dock</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dock" asp-action="Index">Docks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Lease" asp-action="List">MySlips</a>
+                        </li>
+                        @*<li class="nav-item ml-auto">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Log In</a>
+                        </li>*@
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container col-md-10">
+        <div class="card">
+        <div class="text-center col-xs-6">
+            
+        </div>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["Message"] != null)
+            {
+                <h4 class="@((bool)TempData["IsError"]? "bg-danger": "bg-info") text-center text-light p-2">
+                    @TempData["Message"]
+                </h4>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+       <div class="container">
+           &copy; 2022 - InlandMarina
+       </div>
+    </footer>
+     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="~/js/site.js" asp-append-version="true"></script>
+      @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
